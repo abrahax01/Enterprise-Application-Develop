@@ -2,9 +2,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
+    "express": "^4.18.2"
   },
   "name": "lab2",
   "description": "4th year final project",
@@ -16,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abrahax01/MedEire.git"
+    "url": "git+https://github.com/abrahax01/Enterprise-Application-Develop.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abrahax01/MedEire/issues"
+    "url": "https://github.com/abrahax01/Enterprise-Application-Develop/issues"
   },
-  "homepage": "https://github.com/abrahax01/MedEire#readme"
+  "homepage": "https://github.com/abrahax01/Enterprise-Application-Develop#readme"
 }
