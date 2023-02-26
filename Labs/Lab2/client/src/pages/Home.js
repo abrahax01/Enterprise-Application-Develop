@@ -1,12 +1,13 @@
 import React from "react";
+import axios from "axios";
 
 function Home(){
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
-      fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setData(data.message));
+      axios.get("/api")
+        .then((res) => setData(res.data.message))
+        .catch((err) => console.error(err));
     }, []);
 
     return (
@@ -17,7 +18,7 @@ function Home(){
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="about">About</a></li>
-                    <li><a href="login">App</a></li>
+                    <li><a href="app">App</a></li>
                 </ul>
             </div>
         </div>

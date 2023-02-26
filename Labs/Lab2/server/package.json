@@ -5,12 +5,16 @@
     "express": "^4.18.2"
   },
   "name": "lab2",
-  "description": "4th year final project",
+  "description": "Lab2",
   "version": "1.0.0",
   "main": "test.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   },
   "repository": {
     "type": "git",

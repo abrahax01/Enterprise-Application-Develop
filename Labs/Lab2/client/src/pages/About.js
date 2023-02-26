@@ -10,7 +10,7 @@ function About(){
                 <li><a href="app">App</a></li>
             </ul>
         </div>
-        );
+    );
 }
 
 export default About;
