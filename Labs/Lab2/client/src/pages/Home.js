@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ReactSVG } from "react-svg";
+import $ from 'jquery';
 
 function Home() {
     const [showTable, setShowTable] = useState(false);
@@ -12,6 +13,7 @@ function Home() {
     const [tableData, setTableData] = useState([]);
     const [showFirstTwenty, setShowFirstTwenty] = useState(true);
     const [numOfCountries, setNumOfCountries] = useState(20);
+    const [tableFade, setTableFade] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,38 +52,51 @@ function Home() {
         }
     }, [isLoading, isLoaded, countryData]);
 
-  const showTwenty = () => {
-    setShowFirstTwenty(true);
-    setNumOfCountries(20);
-  };
+    const showTwenty = () => {
+        setShowFirstTwenty(true);
+        setNumOfCountries(20);
+    };
 
-  const showAll = () => {
-    setShowFirstTwenty(false);
-    setNumOfCountries(tableData.length);
-  };
+    const showAll = () => {
+        setShowFirstTwenty(false);
+        setNumOfCountries(tableData.length);
+    };
 
-  const getTableRows = () => {
-    const rows = [];
-    for (let i = 0; i < numOfCountries; i++) {
-        const countryRow = tableData[i];
-        rows.push(
-            <tr key={i}>
-                <td>{countryRow[0]}</td>
-                <td>{countryRow[1]}</td>
-                <td>{countryRow[2]}</td>
-                <td>{countryRow[3]}</td>
-                <td style={{ width: '50px', height: '50px', overflow: 'hidden' }}>
-                    {countryRow[4] !== '' && <ReactSVG src={countryRow[4]} style={{ maxWidth: '50px', maxHeight: '50px', objectFit: 'cover', objectPosition: '50% 50%' }} />}
-                </td>
-                <td>{countryRow[5]}</td>
+    const getTableRows = () => {
+        const rows = [];
+        for (let i = 0; i < numOfCountries; i++) {
+            const countryRow = tableData[i];
+            rows.push(
+                <tr key={i}>
+                    <td>{countryRow[0]}</td>
+                    <td>{countryRow[1]}</td>
+                    <td>{countryRow[2]}</td>
+                    <td>{countryRow[3]}</td>
+                    <td style={{ width: '50px', height: '50px', overflow: 'hidden' }}>
+                        {countryRow[4] !== '' && <ReactSVG src={countryRow[4]} style={{ maxWidth: '50px', maxHeight: '50px', objectFit: 'cover', objectPosition: '50% 50%' }} />}
+                    </td>
+                    <td>{countryRow[5]}</td>
 
-            </tr>
-        );
-    }
-    return rows;
-  };
+                </tr>
+            );
+        }
+        return rows;
+    };
+
+    const fadeTable = () => {
+        setTableFade(!tableFade);
+      };
+      
+      useEffect(() => {
+        if (tableFade) {
+          $('table').fadeOut();
+        } else {
+          $('table').fadeIn();
+        }
+      }, [tableFade]);
 
     return (
+        
         <div>
             {isLoading ? (<p>Loading...</p>) : (
                 <div>
@@ -119,6 +134,7 @@ function Home() {
                             ))}
                         </ul>
                     )}
+                    <button onClick={fadeTable}>{tableFade ? 'Unfade Table' : 'Fade Table'}</button>
                 </div>
             )}
         </div>

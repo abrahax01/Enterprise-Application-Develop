@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import './styles/index.css';
-import Home from "./country-objects/Home"
-import About from "./country-objects/About"
-import ErrorPage from "./country-objects/ErrorPage"
+import Home from "./pages/Home"
+import About from "./pages/About"
+import ErrorPage from "./pages/ErrorPage"
 import App from "./App"
 
 const router = createBrowserRouter([
