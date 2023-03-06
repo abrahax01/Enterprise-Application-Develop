@@ -2,16 +2,13 @@ const express = require('express')
 const app = express()
 const countriesRouter = require('./country-objects/fetch')
 
-// server on port
+// create server on port 3002
 const PORT = 3002
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)
 })
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" })
-})
-
+// route for fetching countries' data
 app.use('/', countriesRouter)
 
 

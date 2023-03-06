@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 
+
 router.get('/fetch', async (req, res) => {
     try {
+        // uses Axios to get the country data 
         const capitalData = await axios.get('https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-capital-city.json');
         const continentData = await axios.get('https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-continent.json');
         const coastData = await axios.get('https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-costline.json');
@@ -11,6 +13,7 @@ router.get('/fetch', async (req, res) => {
         const domainData = await axios.get('https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-domain-tld.json');
         const flagData = await axios.get('https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-flag.json');
     
+        // maps over the returned data and creates a new array of objects that contain country data from the JSON files
         const result = capitalData.data.map((country) => {
             const continent = continentData.data.find((item) => item.country === country.country);
             const coast = coastData.data.find((item) => item.country === country.country);
