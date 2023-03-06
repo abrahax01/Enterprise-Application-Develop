@@ -20,6 +20,7 @@ function Home() {
     const [highlightRows, setHighlightRows] = useState(false);
     const [textColour, settextColour] = useState('black');
     const [fontSize, setFontSize] = useState(16);
+    const [isAnimated, setIsAnimated ] = useState(false)
 
     // Sets table data, executes only  when isLoading, isLoaded, and countryData states change
     useEffect(() => {
@@ -161,16 +162,33 @@ function Home() {
     // animate content jquery
     const animateText = () => {
         const tableTitle = $('#tableContent');
-        tableTitle.animate({
-            opacity: 0.7,
-            letterSpacing: '5px'
-        }, 1000, 'linear');
-            
         const tableContent = $('#tableContent tbody tr');
-        tableContent.animate({
-            opacity: 0.7,
-            letterSpacing: '5px'
-        }, 1000, 'linear');
+
+        if (!isAnimated) {
+            tableTitle.animate({
+                opacity: 0.7,
+                letterSpacing: '5px'
+            }, 1000, 'linear');
+            
+            tableContent.animate({
+                opacity: 0.7,
+                letterSpacing: '5px'
+            }, 1000, 'linear');
+
+            setIsAnimated(true)
+        } else {
+            tableTitle.animate({
+                opacity: 1,
+                letterSpacing: '0px'
+            }, 1000, 'linear');
+
+            tableContent.animate({
+                opacity: 1,
+                letterSpacing: '0px'
+            }, 1000, 'linear');
+
+            setIsAnimated(false)
+        }
     };
     
     // Function to allow selection of cells
@@ -252,13 +270,11 @@ function Home() {
                                             <button onClick={showAll}>Show All</button>
                                             <button onClick={fadeTable}>{tableFade ? 'Unfade tableContent' : 'Fade tableContent'}</button>
                                             <button onClick={toggleHighlight}>{highlightRows ? 'Restore rows' : 'Highlight rows'}</button>
-                                            <button onClick={changeTextColour}>Change text colour</button>
+                                            <button onClick={changeTextColour}>{textColour === 'red' ? 'Change text colour back': 'Change text colour'}</button>
                                             <button onClick={increaseFontSize}>Increase font size</button>
                                             <button onClick={decreaseFontSize}>Decrease font size</button>
-                                            <button onClick={animateText}>Animate text</button>
+                                            <button onClick={animateText}>{isAnimated ? 'Animate text back' : 'Animate text'}</button>
                                         </div>
-                                    
-                                    
                                     ) : (<button onClick={showTwenty}>Show First 20</button>)}
                                     
                                     <br />
